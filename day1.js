@@ -6,15 +6,13 @@ function replaceWithNum(word) {
   for (let i = 3; i < word.length; i += 3) {
     word.slice(0, i);
   }
-  // go through each latter and add the word, if word includes one
-  let pword = '';
+  let testWord = '';
   let numArr = [];
-  console.log(word);
   word.split('').forEach((letter) => {
     if (Number(letter)) {
       numArr.push(letter);
     } else {
-      pword += letter;
+      testWord += letter;
       [
         ['one', '1'],
         ['two', '2'],
@@ -28,7 +26,7 @@ function replaceWithNum(word) {
       ].forEach((x) => {
         if (pword.includes(x[0])) {
           numArr.push(x[1]);
-          pword = pword[pword.length-1];
+          testWord = pword[pword.length-1];
         }
       });
     }
@@ -38,10 +36,10 @@ function replaceWithNum(word) {
 }
 
 function solve(input) {
-  const rows = input.split('\n');
+  const words = input.split('\n');
   let total = 0;
-  rows.forEach((row) => {
-    let num = '';
+  words.forEach((row) => {
+    let stringNum = '';
     let filteredRow = replaceWithNum(row);
     num = filteredRow[0] + filteredRow[filteredRow.length - 1];
     console.log(num);
